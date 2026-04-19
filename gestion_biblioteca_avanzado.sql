@@ -71,6 +71,18 @@ CREATE TABLE `prestamos` (
   PRIMARY KEY (`IdPrestamo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+ALTER TABLE `libros`
+ADD CONSTRAINT `fk_libro_autor` 
+FOREIGN KEY (`AutorId`) REFERENCES `autores`(`IdAutor`),
+ADD CONSTRAINT `fk_libro_genero` 
+FOREIGN KEY (`GeneroId`) REFERENCES `generos`(`IdGenero`);
+
+ALTER TABLE `prestamos`
+ADD CONSTRAINT `fk_prestamo_socio` 
+FOREIGN KEY (`SocioDni`) REFERENCES `socios`(`DniSocio`),
+ADD CONSTRAINT `fk_prestamo_libro` 
+FOREIGN KEY (`LibroId`) REFERENCES `libros`(`IdLibro`);
+
 -- --------------------------------------------------------
 -- 3. AUTOMATIZACIÓN MEDIANTE DISPARADORES (Triggers)
 -- --------------------------------------------------------
